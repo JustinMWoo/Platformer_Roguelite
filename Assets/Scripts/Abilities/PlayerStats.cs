@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    // Multipliers for the abilities
-    public float AOE;
-    public float ProjSpeed;
-    public float CooldownReduction;
+    [Header("Player Attributes")]
+    public List<PlayerAttributes> attributes = new List<PlayerAttributes>();
 
-    public PlayerStats()
+    public PlayerAttributes Find(string name)
     {
-        AOE = 1;
-        ProjSpeed = 1;
-        CooldownReduction = 1;
+        List<PlayerAttributes>.Enumerator playerAttr = attributes.GetEnumerator();
+
+        while (playerAttr.MoveNext())
+        {
+            if(playerAttr.Current.attribute.name.ToString() == name)
+            {
+                return playerAttr.Current;
+            }
+        }
+
+        return null;
     }
 }

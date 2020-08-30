@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAbilityController : MonoBehaviour
 {
     // 0 = movement ability, 1, 2, 3 = equipped
-    public Ability[] curAbilities = new Ability[4];
+    public AbilityTriggerable[] curAbilities = new AbilityTriggerable[4];
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +22,11 @@ public class PlayerAbilityController : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            curAbilities[0].Execute(gameObject);
+            curAbilities[0].Execute();
         }
         if (Input.GetButtonDown("Fire2"))
         {
-            curAbilities[1].Execute(gameObject);
+            curAbilities[1].Execute();
         }
     }
 }

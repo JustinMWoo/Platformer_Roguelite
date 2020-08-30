@@ -14,6 +14,8 @@ public class AbilityEquippingController : MonoBehaviour
     public PlayerAbilityController player;
     public PlayerStats playerStats;
 
+    public AbilityCooldown[] abilityCooldowns;
+
     // Singleton
     private void Awake()
     {
@@ -37,12 +39,16 @@ public class AbilityEquippingController : MonoBehaviour
 
     public void Equip(string abilityName, int abilitySlot)
     {
-        // Create an instance of the type and put it on the character
-        Type abilityType = abilityName.GetType();
-        player.curAbilities[abilitySlot] =(Ability) Activator.CreateInstance(abilityType, playerStats);
+        foreach (AbilityCooldown ability in abilityCooldowns)
+        {
+            ability.UpdateCooldown();
+        }
+        //// Create an instance of the type and put it on the character
+        //Type abilityType = abilityName.GetType();
+        ////player.curAbilities[abilitySlot] =(Ability) Activator.CreateInstance(abilityType, playerStats);
 
-        Sprite abilityIcon = Resources.Load<Sprite>("AbilityIcons/"+abilityName);
+        //Sprite abilityIcon = Resources.Load<Sprite>("AbilityIcons/"+abilityName);
 
-        abilityDisplay[abilitySlot].GetComponent<Image>().overrideSprite = abilityIcon;
+        //abilityDisplay[abilitySlot].GetComponent<Image>().overrideSprite = abilityIcon;
     }
 }

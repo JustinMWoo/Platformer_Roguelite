@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float baseSpeed = 10f;
-    float speedMulti;
+    float speed;
     public Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        rb.velocity = transform.right * baseSpeed* speedMulti;
+        rb.velocity = transform.right * speed;
     }
 
-    public void SetSpeedMulti(float value)
+    public void SetSpeed(float value)
     {
-        speedMulti = value;
+        speed = value;
     }
 }

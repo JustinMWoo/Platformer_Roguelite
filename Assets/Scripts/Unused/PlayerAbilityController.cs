@@ -12,9 +12,9 @@ public class PlayerAbilityController : MonoBehaviour
     {
         PlayerStats stats = GetComponent<PlayerStats>();
 
-        AbilityEquippingController.Current.Equip("Dash", 0);
+        //AbilityEquippingController.Current.Equip("Dash", 0);
 
-        AbilityEquippingController.Current.Equip("SpineShot", 1);
+        //AbilityEquippingController.Current.Equip("SpineShot", 1);
     }
 
     // Update is called once per frame

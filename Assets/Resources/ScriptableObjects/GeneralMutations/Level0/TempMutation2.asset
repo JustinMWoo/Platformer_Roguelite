@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33c812753a005f439d56b2586131929, type: 3}
+  m_Name: TempMutation2
+  m_EditorClassIdentifier: 
+  statMods:
+  - affectedAttribute: {fileID: 11400000, guid: b1a359fe1c72b494d80d89b992a6b7ae,
+      type: 2}
+    value: 5
+    type: 300
+    order: 0
+    source: {fileID: 0}
+  mutationSprite: {fileID: 21300000, guid: 412786d382eba0445b4c83405069968a, type: 3}
+  mutationDescription: fffffffffff

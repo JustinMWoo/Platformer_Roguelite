@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80714d31986cbca4abd23e74359bc52c, type: 3}
+  m_Name: AbilityHolder
+  m_EditorClassIdentifier: 
+  abilities:
+  - abilityArray:
+    - {fileID: 11400000, guid: 5205a265de733c64881f2bb2c05b49a3, type: 2}
+    - {fileID: 11400000, guid: b242df6f36bc5fe48aa480af4d3a0fb2, type: 2}
+    - {fileID: 11400000, guid: d9e419b672bf35c49a2d0a3eaea9eeca, type: 2}
+  dropTable:
+  - intArray: 320000001e000000

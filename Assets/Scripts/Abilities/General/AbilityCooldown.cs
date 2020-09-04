@@ -10,6 +10,8 @@ public class AbilityCooldown : MonoBehaviour
     public Image darkMask;
     public TextMeshProUGUI cooldownTextDisplay;
 
+    public bool movementAbility = false;
+
     [SerializeField] private Ability ability;
     [SerializeField] private GameObject player;
     private Image buttonImage;
@@ -17,11 +19,15 @@ public class AbilityCooldown : MonoBehaviour
     private float nextReadyTime;
     private float cooldownTimeLeft;
 
+    public bool initialize;
 
     // Start is called before the first frame update
     void Start()
     {
-        Initialize(ability, player);
+        if (initialize)
+        {
+            Initialize(Instantiate(ability), player);
+        }
     }
 
     public void Initialize(Ability selectedAbility, GameObject player)
@@ -38,19 +44,30 @@ public class AbilityCooldown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         bool cooldownComplete = (Time.time > nextReadyTime);
         if (cooldownComplete)
         {
             AbilityReady();
             if (Input.GetButtonDown(abilityButtonAxisName))
             {
-                ButtonTriggered();
+                // If the player is touching an ability and presses the button
+                if (AbilityEquippingController.Current.IsTouchingAbility())
+                {
+                    // equip item
+                    AbilityEquippingController.Current.Equip(this);
+                }
+                else if (ability)
+                {
+                    ButtonTriggered();
+                }
             }
         }
         else
         {
             Cooldown();
         }
+
     }
 
     private void AbilityReady()
@@ -81,6 +98,13 @@ public class AbilityCooldown : MonoBehaviour
 
     public void UpdateCooldown()
     {
-        cooldownDuration = ability.aBaseCooldown * player.GetComponent<PlayerStats>().Find("Cooldown").amount;
+        // Only run if there is an ability assigned
+        if (ability)
+            cooldownDuration = ability.aBaseCooldown * player.GetComponent<PlayerStats>().Find("Cooldown").Value;
+    }
+
+    public Ability GetAbility()
+    {
+        return ability;
     }
 }

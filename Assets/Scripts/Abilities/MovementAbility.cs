@@ -25,6 +25,6 @@ public class MovementAbility : Ability
 
     public override void Unequip()
     {
-        throw new System.NotImplementedException();
+        base.Unequip();
     }
 }

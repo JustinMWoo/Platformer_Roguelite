@@ -6,18 +6,47 @@ public class FireProjectileTriggerable : MonoBehaviour
 {
     public float projectileSpeed;
     public GameObject projectilePrefab;
-    public string projectileSpawn;
+    public ProjectileSpawn projectileSpawn;
     public PlayerStats stats;
+    public int projectileNumber;
+    public int projectileDamage;
+    public float spread;
+
+    public Transform spawnLocation;
 
     void Start()
     {
+        // Get the stats of the player to apply modifiers to the projectile
         stats = GetComponent<PlayerStats>();
     }
 
+    // Fire the projectile according to the specifications from the scriptable object ProjectileAbility
     public void FireProjectile()
     {
-        GameObject spine = Instantiate(projectilePrefab, transform.Find(projectileSpawn).position , transform.Find(projectileSpawn).rotation);
+        if (projectileSpawn == ProjectileSpawn.Head)
+        {
+            spawnLocation = transform.Find("Head");
+        }
 
-        spine.GetComponent<Projectile>().SetSpeed(stats.Find("ProjectileSpeed").amount * projectileSpeed);
+        for (int i = 0; i < projectileNumber; i++)
+        {
+            Invoke("CreateProjectile", i * 0.1f);
+        }
+    }
+
+    // Create a projectile using the prefab provided
+    private void CreateProjectile()
+    {
+        GameObject proj = Instantiate(projectilePrefab, spawnLocation.position, spawnLocation.rotation);
+        Projectile newProj = proj.GetComponent<Projectile>();
+
+        // Add spread to the projectile
+        proj.transform.Rotate(0, 0, Random.Range(-spread, spread));
+
+        // Set the properties of the projectile
+        newProj.SetSpeed(stats.Find("ProjectileSpeed").Value * projectileSpeed);
+        newProj.playerProjectile = true;
+        newProj.damage = projectileDamage;
+
     }
 }

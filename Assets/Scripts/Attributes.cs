@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player/Attribute")]
 public class Attributes : ScriptableObject
 {
-
+    public string Description;
 }

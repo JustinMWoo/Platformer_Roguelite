@@ -6,12 +6,13 @@ public class AbilityStats
 {
     float baseValue;
     bool isDirty = true;
+    
 
-    readonly List<Mutation> mutations;
+    readonly List<StatMod> mutations;
 
     public AbilityStats()
     {
-        mutations = new List<Mutation>();
+        mutations = new List<StatMod>();
     }
 
     public AbilityStats(float value) : this()
@@ -19,13 +20,13 @@ public class AbilityStats
         baseValue = value;
     }
 
-    public void AddMutation(Mutation mutation)
+    public void AddMutation(StatMod mutation)
     {
         isDirty = true;
         mutations.Add(mutation);
     }
 
-    public bool RemoveMutation(Mutation mutation)
+    public bool RemoveMutation(StatMod mutation)
     {
         if (mutations.Remove(mutation))
         {

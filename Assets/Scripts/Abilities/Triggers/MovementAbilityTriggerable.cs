@@ -16,8 +16,6 @@ public class MovementAbilityTriggerable : MonoBehaviour
 
     public void ExecuteAbility()
     {
-        float facing = transform.right.x;
-
-        GetComponent<PlayerMovement>().SetVelocityXForTime(dashSpeed*facing, dashDuration);
+        GetComponent<PlayerMovement>().SetVelocityXForTime(dashSpeed, dashDuration);
     }
 }

@@ -17,5 +17,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5205a265de733c64881f2bb2c05b49a3, type: 2}
     - {fileID: 11400000, guid: b242df6f36bc5fe48aa480af4d3a0fb2, type: 2}
     - {fileID: 11400000, guid: d9e419b672bf35c49a2d0a3eaea9eeca, type: 2}
+    - {fileID: 11400000, guid: 4a5aaf9eaa265284ba27f4e1baec9c0b, type: 2}
+  - abilityArray:
+    - {fileID: 11400000, guid: d39c5a94561b9494fa0b1fb9dc8140c6, type: 2}
   dropTable:
   - intArray: 320000001e000000

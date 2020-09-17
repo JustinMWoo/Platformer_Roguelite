@@ -50,7 +50,7 @@ public class MutationItem : MonoBehaviour
             {
                 foreach (StatMod mod in mutation.statMods)
                 {
-                    PlayerAttributes attr = AbilityEquippingController.Current.playerStats.Find(mod.affectedAttribute.name);
+                    PlayerAttributes attr = AbilityController.Current.playerStats.Find(mod.affectedAttribute.name);
 
                     if (attr != null)
                     {
@@ -75,7 +75,7 @@ public class MutationItem : MonoBehaviour
             // Show prompt to activate pickup
             prompt.gameObject.SetActive(true);
 
-            if (Input.GetButtonDown("MutationPickup")){
+            if (Input.GetButtonDown("Interact")){
                 // Show mutation picking screen
                 mutationPanel.SetActive(true);
                 Time.timeScale = 0f;

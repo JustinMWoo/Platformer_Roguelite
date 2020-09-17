@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    int numTiers;
+    private int numTiers;
 
-    int currentHealth;
+    public int currentHealth;
 
+    // TODO: Maybe make a different boss class and each boss is a subclass of it because bosses are going to be very different
     [SerializeField]
-    int maxHealth;
+    bool isBoss = false;
+    [SerializeField]
+    int maxHealth = 0;
     [SerializeField]
     int level;
 
@@ -20,7 +23,7 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
 
         // Not sure if this is necessary
-        numTiers = AbilityEquippingController.Current.droppableAbilities.GetNumTiers();
+        numTiers = AbilityController.Current.droppableAbilities.GetNumTiers();
     }
 
     // Update is called once per frame
@@ -39,6 +42,8 @@ public class Enemy : MonoBehaviour
     }
     void Die()
     {
+        if (isBoss)
+            GameManager.Current.bossAlive = false;
         RollForItem();
         Destroy(gameObject);
     }
@@ -46,7 +51,7 @@ public class Enemy : MonoBehaviour
     void RollForItem()
     {
         // Get the drop table for the units level
-        int[] dropTable = AbilityEquippingController.Current.GetDropTableForLevel(level);
+        int[] dropTable = AbilityController.Current.GetDropTableForLevel(level);
 
         // Roll for an item drop
         int roll = Random.Range(0, 100);
@@ -58,7 +63,7 @@ public class Enemy : MonoBehaviour
         {
             if (roll <= chance)
             {
-                AbilityEquippingController.Current.DropItem(tier, transform.position);
+                AbilityController.Current.DropItem(tier, transform.position);
                 return;
             }
             else
@@ -68,4 +73,13 @@ public class Enemy : MonoBehaviour
             tier++;
         }
     }
+
+    #region Damage Over Time
+
+    public void DamageOverTime(int damage)
+    {
+
+    }
+
+    #endregion
 }

@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.WSA;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public enum ProjectileSpawn
 {
@@ -11,6 +14,15 @@ public enum ProjectileSpawn
 [CreateAssetMenu (menuName = "Abilities/ProjectileAbility")]
 public class ProjectileAbility : Ability
 {
+    [HideInInspector]
+    public bool residualAOEField;
+    [HideInInspector]
+    public int residualAOEDamage = 1;
+    [HideInInspector]
+    public GameObject residualAOEPrefab;
+    [HideInInspector]
+    public float residualAOEDuration = 1;
+
     public float projectileSpeed = 1;
     public GameObject projectilePrefab;
     public ProjectileSpawn projectileSpawn;
@@ -32,6 +44,14 @@ public class ProjectileAbility : Ability
         fireProj.projectileDamage = projectileDamage;
         fireProj.projectileNumber = projectileNumber;
         fireProj.spread = spread;
+
+        // If the projectile leaves behind an AOE field
+        if (residualAOEField)
+        {
+            fireProj.residualAOEDamage = residualAOEDamage;
+            fireProj.residualAOEDuration = residualAOEDuration;
+            fireProj.residualAOEPrefab = residualAOEPrefab;
+        }
     }
 
     // Fire the projectile
@@ -50,3 +70,25 @@ public class ProjectileAbility : Ability
         Destroy(fireProj);
     }
 }
+
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(ProjectileAbility))]
+public class ProjectileAbility_Editor: Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+        ProjectileAbility script = (ProjectileAbility)target;
+
+        script.residualAOEField = EditorGUILayout.Toggle("AOE Field", script.residualAOEField);
+        if (script.residualAOEField)
+        {
+            script.residualAOEDamage = EditorGUILayout.IntField("Residual AOE Damage", script.residualAOEDamage);
+            script.residualAOEDuration = EditorGUILayout.FloatField("Residual AOE Duration", script.residualAOEDuration);
+            script.residualAOEPrefab = EditorGUILayout.ObjectField("Residual AOE Prefab", script.residualAOEPrefab, typeof(GameObject), true) as GameObject;
+        }
+
+    }
+}
+#endif

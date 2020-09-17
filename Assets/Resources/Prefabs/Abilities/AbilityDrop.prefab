@@ -512,7 +512,7 @@ MonoBehaviour:
   rb: {fileID: -3516162393168282272}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 4096
 --- !u!50 &-3516162393168282272
 Rigidbody2D:
   serializedVersion: 4

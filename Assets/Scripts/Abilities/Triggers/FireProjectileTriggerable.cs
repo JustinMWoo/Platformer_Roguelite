@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FireProjectileTriggerable : MonoBehaviour
 {
+    #region Variables
+    // Basic projectile information
     public float projectileSpeed;
     public GameObject projectilePrefab;
     public ProjectileSpawn projectileSpawn;
@@ -11,8 +13,16 @@ public class FireProjectileTriggerable : MonoBehaviour
     public int projectileNumber;
     public int projectileDamage;
     public float spread;
-
     public Transform spawnLocation;
+
+    // Residual AOE information
+    public int residualAOEDamage;
+    public GameObject residualAOEPrefab;
+    public float residualAOEDuration;
+
+    private bool init = false;
+
+    #endregion
 
     void Start()
     {
@@ -23,9 +33,10 @@ public class FireProjectileTriggerable : MonoBehaviour
     // Fire the projectile according to the specifications from the scriptable object ProjectileAbility
     public void FireProjectile()
     {
-        if (projectileSpawn == ProjectileSpawn.Head)
+        if (!init && projectileSpawn == ProjectileSpawn.Head)
         {
             spawnLocation = transform.Find("Head");
+            init = true;
         }
 
         for (int i = 0; i < projectileNumber; i++)
@@ -48,5 +59,12 @@ public class FireProjectileTriggerable : MonoBehaviour
         newProj.playerProjectile = true;
         newProj.damage = projectileDamage;
 
+        if (residualAOEPrefab != null)
+        {
+            // If the projectile leaves behind an AOE field
+            newProj.residualAOEPrefab = residualAOEPrefab;
+            newProj.residualAOEDamage = residualAOEDamage;
+            newProj.residualAOEDuration = residualAOEDuration;
+        }
     }
 }

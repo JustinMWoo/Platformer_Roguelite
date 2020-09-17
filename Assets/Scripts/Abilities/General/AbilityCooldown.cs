@@ -52,10 +52,10 @@ public class AbilityCooldown : MonoBehaviour
             if (Input.GetButtonDown(abilityButtonAxisName))
             {
                 // If the player is touching an ability and presses the button
-                if (AbilityEquippingController.Current.IsTouchingAbility())
+                if (AbilityController.Current.IsTouchingAbility())
                 {
                     // equip item
-                    AbilityEquippingController.Current.Equip(this);
+                    AbilityController.Current.Equip(this);
                 }
                 else if (ability)
                 {

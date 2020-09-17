@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3911dfe0b04790a46a5f76e235e23325, type: 3}
+  m_Name: PoisonGas
+  m_EditorClassIdentifier: 
+  aName: Poison Gas
+  aDescription: Fires a projectile that explodes into a poison gas cloud.
+  aSprite: {fileID: 21300000, guid: 082b798a7af1dbe4ca06b267ab98c790, type: 3}
+  aBaseCooldown: 8
+  mutations: {fileID: 0}
+  movement: 0
+  residualAOEField: 1
+  residualAOEDamage: 10
+  residualAOEPrefab: {fileID: 9222611138910430443, guid: 5ba4cda975641fe409ffde57d468221b,
+    type: 3}
+  residualAOEDuration: 3
+  projectileSpeed: 15
+  projectilePrefab: {fileID: 4568156237177334207, guid: 10d75b2bf557ed64aac83414da58496f,
+    type: 3}
+  projectileSpawn: 1
+  projectileDamage: 5
+  projectileNumber: 1
+  spread: 0

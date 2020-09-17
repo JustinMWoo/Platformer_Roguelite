@@ -9,13 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: a33c812753a005f439d56b2586131929, type: 3}
   m_Name: DashMutation
   m_EditorClassIdentifier: Assembly-CSharp::Mutation
   statMods:
   - affectedAttribute: {fileID: 11400000, guid: b1a359fe1c72b494d80d89b992a6b7ae,
       type: 2}
-    value: 1.5
+    value: 2
     type: 300
     order: 0
     source: {fileID: 11400000, guid: 5205a265de733c64881f2bb2c05b49a3, type: 2}
+  generalMutation: 0
+  mutationSprite: {fileID: 0}
+  mutationDescription: 

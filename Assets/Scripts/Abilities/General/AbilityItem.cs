@@ -56,7 +56,7 @@ public class AbilityItem : MonoBehaviour
     {
         if (grounded && collision.gameObject.CompareTag("Player"))
         {
-            AbilityEquippingController.Current.AddEquippableAbility(gameObject);
+            AbilityController.Current.AddEquippableAbility(gameObject);
         }
     }
 
@@ -64,7 +64,7 @@ public class AbilityItem : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            AbilityEquippingController.Current.RemoveEquippableAbility(gameObject);
+            AbilityController.Current.RemoveEquippableAbility(gameObject);
         }
     }
 

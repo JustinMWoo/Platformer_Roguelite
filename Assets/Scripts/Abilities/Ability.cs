@@ -65,7 +65,7 @@ public abstract class Ability : ScriptableObject
                 }
             }
         }
-        AbilityEquippingController.Current.DropItemOnPlayer(this);
+        AbilityController.Current.DropItemOnPlayer(this);
     }
    
 }

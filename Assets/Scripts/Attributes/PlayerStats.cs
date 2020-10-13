@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    // TODO: Maybe get all these from a folder like how the major mutations are loaded and have a default value for the attributes when creating the attribute
     [Header("Player Attributes")]
     public List<PlayerAttributes> attributes = new List<PlayerAttributes>();
 

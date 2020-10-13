@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     private int numTiers;
 
-    public int currentHealth;
+    int currentHealth;
 
     // TODO: Maybe make a different boss class and each boss is a subclass of it because bosses are going to be very different
     [SerializeField]
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         currentHealth = maxHealth;
 
@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-    void Die()
+    protected void Die()
     {
         if (isBoss)
             GameManager.Current.bossAlive = false;
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void RollForItem()
+    protected void RollForItem()
     {
         // Get the drop table for the units level
         int[] dropTable = AbilityController.Current.GetDropTableForLevel(level);
@@ -74,12 +74,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    #region Damage Over Time
-
-    public void DamageOverTime(int damage)
-    {
-
-    }
-
-    #endregion
+    // TEMPORARY CONTACT DAMAGE TEST
+    // Turn on collision between player and enemy to test
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(transform, 5);
+    //    }
+    //}
 }

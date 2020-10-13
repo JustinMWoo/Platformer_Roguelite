@@ -3,37 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class MeleeEnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour
 {
-    public Transform target;
+    private Transform target;
 
     public float speed = 200f;
     public float jumpForce = 300f;
     public float nextWaypointDistance = 3f;
-    public float stopDistance = 5f;
+    //public float stopDistance = 5f;
 
     public Transform enemyGFX;
 
-    Path path;
-    int currentWaypoint = 0;
-    bool reachEndOfPath = false;
+    private Path path;
+    private int currentWaypoint = 0;
+    private bool reachEndOfPath = false;
 
-    Seeker seeker;
-    Rigidbody2D rb;
+    private Seeker seeker;
+    private Rigidbody2D rb;
 
-    bool isGrounded;
+    private bool isGrounded;
     [SerializeField] private LayerMask whatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform groundCheck;                           // A position marking where to check if the player is grounded.
 
-    bool patrolling = true;
-    bool movingRight = true;
-    bool init = false;
+    private bool patrolling = true;
+    private bool facingRight = true;
+    private bool init = false;
     public Transform patrolGroundDetection;
     public float patrolSpeed = 200f;
 
     public EnemyVisionDetection visionDetection;
 
-    bool pathFinding;
+    private bool pathFinding;
+
+    [SerializeField] private float attackRange = 1;
+    [SerializeField] private LayerMask playerUnitLayer;
+    private bool attacking = false;
 
     private void Start()
     {
@@ -42,13 +46,13 @@ public class MeleeEnemyAI : MonoBehaviour
 
     }
 
-    void UpdatePath()
+    private void UpdatePath()
     {
         if (seeker.IsDone())
             seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
 
-    void OnPathComplete(Path p)
+    private void OnPathComplete(Path p)
     {
         if (!p.error)
         {
@@ -59,15 +63,20 @@ public class MeleeEnemyAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckVision();
-
         if (patrolling)
         {
+            CheckVision();
             Patrol();
         }
         else if (pathFinding)
         {
+            CheckRange();
             PathFind();
+        }
+        else if (attacking)
+        {
+            CheckRange();
+            Attack();
         }
     }
 
@@ -122,16 +131,16 @@ public class MeleeEnemyAI : MonoBehaviour
 
         hit = Physics2D.Raycast(transform.position, transform.right, 2f);
 
-        if (isGrounded && hit.collider != null && hit.collider.CompareTag("Terrain")) //TODO: Or if enemy reaches end of platform and the player is above
+        if (isGrounded && hit.collider != null && hit.collider.CompareTag("Terrain")) //TODO: Or if enemy reaches end of platform and the player is above?
         {
             rb.velocity = Vector2.up * jumpForce;
         }
 
-        // If the distance to the player is greater than the stop distance then keep moving the enemy
-        if (path.GetTotalLength() > stopDistance)
-        {
-            rb.AddForce(force);
-        }
+        // If the distance to the player is greater than the stop distance then keep moving the enemy (Replaced by attackrange)
+        //if (path.GetTotalLength() > stopDistance)
+        //{
+        rb.AddForce(force);
+        //}
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
@@ -141,13 +150,20 @@ public class MeleeEnemyAI : MonoBehaviour
         }
 
 
-        // Flip the transform without using Flip
-        // TODO: maybe figure out why flip doenst work for this
-        if (!movingRight && rb.velocity.x > 0)
+        // TODO: sometimes flips direction for a frame (rb.velocity is another way to do this, but will face direction it is moving)
+        //if (!facingRight && dir.x > 0)
+        //{
+        //    Flip();
+        //}
+        //else if (facingRight && dir.x < 0)
+        //{
+        //    Flip();
+        //}
+        if (target.transform.position.x > transform.position.x && !facingRight)
         {
             Flip();
         }
-        else if (movingRight && rb.velocity.x < 0)
+        else if (target.transform.position.x < transform.position.x && facingRight)
         {
             Flip();
         }
@@ -172,7 +188,7 @@ public class MeleeEnemyAI : MonoBehaviour
     {
         transform.Rotate(0f, 180f, 0f);
 
-        movingRight = !movingRight;
+        facingRight = !facingRight;
 
         //if (movingRight == true)
         //{
@@ -185,4 +201,34 @@ public class MeleeEnemyAI : MonoBehaviour
         //    movingRight = true;
         //}
     }
+    private void Attack()
+    {
+        // Face player
+        if (target.transform.position.x > transform.position.x && !facingRight)
+        {
+            Flip();
+        }
+        else if (target.transform.position.x < transform.position.x && facingRight)
+        {
+            Flip();
+        }
+
+        // Class for enemy attacks (similar to triggerable) and then call attacktype.attack and attacktype holds the code for animation, attacking and dealing damage
+    }
+    private void CheckRange()
+    {
+        Collider2D collider = Physics2D.OverlapCircle(transform.position, attackRange, playerUnitLayer);
+
+        if (collider != null)
+        {
+            attacking = true;
+            pathFinding = false;
+        }
+        else
+        {
+            pathFinding = true;
+            attacking = false;
+        }
+    }
+
 }

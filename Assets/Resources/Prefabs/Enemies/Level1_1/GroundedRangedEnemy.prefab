@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 8796631513833690151}
   - component: {fileID: 8796631513833690150}
   m_Layer: 10
-  m_Name: MeleeEnemyGFX
+  m_Name: RangedEnemyGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 8796631514399532494}
   - component: {fileID: 8796631514399532482}
   m_Layer: 10
-  m_Name: GroundedMeleeEnemy
+  m_Name: GroundedRangedEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,10 +277,10 @@ MonoBehaviour:
   patrolGroundDetection: {fileID: 1710774691}
   patrolSpeed: 200
   visionDetection: {fileID: 1394491751}
-  attackRange: 1
+  attackRange: 10
   playerUnitLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!114 &8796631514399532480
 MonoBehaviour:
   m_ObjectHideFlags: 0

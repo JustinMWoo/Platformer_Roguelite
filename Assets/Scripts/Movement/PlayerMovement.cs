@@ -12,18 +12,19 @@ public class PlayerMovement : MonoBehaviour
 
     float horizontalMove = 0f;
     bool jump = false;
+    private bool preventMovement;
     private bool dashing;
 
     // Update is called once per frame
     void Update()
     {
-        if (!dashing)
+        if (!preventMovement && !dashing)
         {
             horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
             animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !preventMovement)
         {
             jump = true;
         }
@@ -31,8 +32,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
-        jump = false;
+        if (!preventMovement)
+        {
+            controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
+            jump = false;
+        }
     }
 
     public void SetVelocityXForTime(float newVel, float sec)
@@ -61,5 +65,15 @@ public class PlayerMovement : MonoBehaviour
 
         rb.gravityScale = gravity;
         dashing = false;
+    }
+
+    public IEnumerator LoseControl(float sec)
+    {
+        preventMovement = true;
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        animator.SetFloat("Speed", 0f);
+        yield return new WaitForSeconds(sec);
+        preventMovement = false;
     }
 }

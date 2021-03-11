@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 6006372077967048137}
   - component: {fileID: 6006372077967048130}
   - component: {fileID: 6006372077967048131}
+  - component: {fileID: 4072209035006784673}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -348,3 +349,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0632186, y: 0.38705593}
   m_EdgeRadius: 0
+--- !u!114 &4072209035006784673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9181040452364313364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627acc6b932b6374c89777497d787d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
+  regularColor: {r: 1, g: 1, b: 1, a: 1}

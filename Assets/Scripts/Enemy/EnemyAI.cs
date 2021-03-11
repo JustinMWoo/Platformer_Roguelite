@@ -39,11 +39,13 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private LayerMask playerUnitLayer;
     private bool attacking = false;
 
+    private EnemyAttack attackType;
+
     private void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-
+        attackType = GetComponent<EnemyAttack>();
     }
 
     private void UpdatePath()
@@ -214,6 +216,7 @@ public class EnemyAI : MonoBehaviour
         }
 
         // Class for enemy attacks (similar to triggerable) and then call attacktype.attack and attacktype holds the code for animation, attacking and dealing damage
+        attackType.Execute();
     }
     private void CheckRange()
     {
@@ -231,4 +234,13 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    public Transform GetTarget()
+    {
+        return target;
+    }
+
+    public bool GetAttackStatus()
+    {
+        return attacking;
+    }
 }

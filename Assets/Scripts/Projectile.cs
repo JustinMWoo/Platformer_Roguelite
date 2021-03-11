@@ -17,11 +17,13 @@ public class Projectile : MonoBehaviour
     public int residualAOEDamage;
     public float residualAOEDuration;
 
+    public Vector2 direction;
+
     // Start is called before the first frame update
     void Start()
     {
         //lastPos = transform.position;
-        rb.velocity = transform.right * speed;
+        rb.velocity = direction * speed;
 
         // If the object has not hit anything destroy it in 5 sec
         Destroy(gameObject, 5f);
@@ -83,7 +85,9 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-
+            PlayerHealth player = collision.GetComponent<PlayerHealth>();
+            if (player != null)
+                player.TakeDamage(transform, damage);
         }
 
         //Debug.Log(hit.collider.gameObject.name);

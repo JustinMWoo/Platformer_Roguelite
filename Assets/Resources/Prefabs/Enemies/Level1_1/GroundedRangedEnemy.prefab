@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 8796631514399532481}
   - component: {fileID: 8796631514399532494}
   - component: {fileID: 8796631514399532482}
+  - component: {fileID: 592860119}
   m_Layer: 10
   m_Name: GroundedRangedEnemy
   m_TagString: Enemy
@@ -358,7 +359,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14957e6880857254693969c3d2eed581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
   isBoss: 1
   maxHealth: 50
   level: 0
+--- !u!114 &592860119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8796631514399532492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e95ee12a233c2408743071a33cbd3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 4568156237177334207, guid: c4a5de102a619004c95b8e9287c3ed9b,
+    type: 3}
+  damage: 10
+  projSpeed: 10

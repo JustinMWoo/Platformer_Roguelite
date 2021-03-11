@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     int level;
 
-
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -74,13 +73,18 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // TEMPORARY CONTACT DAMAGE TEST
-    // Turn on collision between player and enemy to test
-    //private void OnCollisionEnter2D(Collision2D collision)
+    //TEMPORARY CONTACT DAMAGE TEST
+    //  Turn on collision between player and enemy to test
+
+    //private void OnTriggerStay2D(Collider2D collision)
     //{
-    //    if (collision.gameObject.CompareTag("Player"))
+    //    if (collisionDamage != 0)
     //    {
-    //        collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(transform, 5);
+    //        if (collision.gameObject.CompareTag("Player"))
+    //        {
+    //            Debug.Log("collision");
+    //            collision.gameObject.GetComponentInParent<PlayerHealth>().TakeDamage(transform, collisionDamage);
+    //        }
     //    }
     //}
 }

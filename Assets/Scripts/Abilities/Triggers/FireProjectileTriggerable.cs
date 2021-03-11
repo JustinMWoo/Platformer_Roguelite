@@ -56,6 +56,7 @@ public class FireProjectileTriggerable : MonoBehaviour
 
         // Set the properties of the projectile
         newProj.SetSpeed(stats.Find("ProjectileSpeed").Value * projectileSpeed);
+        newProj.direction = newProj.transform.right;
         newProj.playerProjectile = true;
         newProj.damage = projectileDamage;
 

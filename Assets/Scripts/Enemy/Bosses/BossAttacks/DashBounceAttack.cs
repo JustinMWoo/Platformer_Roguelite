@@ -22,9 +22,12 @@ public class DashBounceAttack : BossAttack
     Gradient attackGradient;
     Gradient startGradient;
     GradientColorKey[] colorKey;
-    GradientAlphaKey[] alphaKey;
+    GradientAlphaKey[] alphaKeyTransparent;
+    GradientAlphaKey[] alphaKeySolid;
 
     private float gravity;
+
+    private int damage = 10;
 
     //public DashBounceAttack(LineRenderer lr, Transform bossTransform, Transform playerTransform)
     //{
@@ -36,8 +39,9 @@ public class DashBounceAttack : BossAttack
     //    playerTrans = playerTransform;
     //}
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
 
@@ -47,8 +51,11 @@ public class DashBounceAttack : BossAttack
         colorKey[0].color = Color.red;
         colorKey[0].time = 0.0f;
 
-        alphaKey = new GradientAlphaKey[1];
-        alphaKey[0].alpha = 1.0f;
+        alphaKeyTransparent = new GradientAlphaKey[1];
+        alphaKeyTransparent[0].alpha = 0.4f;
+
+        alphaKeySolid = new GradientAlphaKey[1];
+        alphaKeySolid[0].alpha = 1.0f;
 
         startGradient = lineRenderer.colorGradient;
         attackGradient = new Gradient();
@@ -74,6 +81,11 @@ public class DashBounceAttack : BossAttack
 
     private void DrawPath()
     {
+        // Make line transparent
+        colorKey[0].color = Color.yellow;
+        attackGradient.SetKeys(colorKey, alphaKeyTransparent);
+        lineRenderer.colorGradient = attackGradient;
+
         lineRenderer.enabled = true;
         lineRenderer.SetPosition(0, bossTrans.position);
         lineRenderer.positionCount = 1;
@@ -110,10 +122,11 @@ public class DashBounceAttack : BossAttack
         attack = false;
         float totalLength = 0;
         List<Vector3> points = new List<Vector3>();
-        gravity = rb.gravityScale;
+        rb.isKinematic = true;
+        //gravity = rb.gravityScale;
         while (lineRenderer.positionCount > 1)
         {
-            rb.gravityScale = 0;
+            //rb.gravityScale = 0;
             for (int i = 0; i < lineRenderer.positionCount - 1; i++)
             {
                 totalLength += Vector2.Distance(lineRenderer.GetPosition(i), lineRenderer.GetPosition(i + 1));
@@ -121,37 +134,50 @@ public class DashBounceAttack : BossAttack
 
             float segLength = Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(1));
 
+            // Change begginning color of line
+            colorKey[0].color = Color.red;
             colorKey[1].color = Color.yellow;
             colorKey[1].time = segLength / totalLength;
 
             //colorKey[2].color = Color.yellow;
             //colorKey[2].time = (segLength / totalLength) + 0.0001f;
-            attackGradient.SetKeys(colorKey, alphaKey);
+            attackGradient.SetKeys(colorKey, alphaKeySolid);
             lineRenderer.colorGradient = attackGradient;
 
             yield return new WaitForSeconds(1);
 
             CameraShake.Current.ShakeCamera(5f, 0.1f);
             points.Clear();
+
+            // Check if player hit
+            // Debug.DrawRay(lineRenderer.GetPosition(0), lineRenderer.GetPosition(1) - lineRenderer.GetPosition(0), Color.magenta, 1);
+            RaycastHit2D hit = Physics2D.Raycast(lineRenderer.GetPosition(0), lineRenderer.GetPosition(1) - lineRenderer.GetPosition(0), segLength, 1 << LayerMask.NameToLayer("Player"));
+            if (hit.collider != null)
+            {
+                hit.collider.GetComponent<PlayerHealth>().TakeDamage(bossTrans, damage);
+            }
+
             // Remove first line segment
             for (int i = 1; i < lineRenderer.positionCount; i++)
             {
                 points.Add(lineRenderer.GetPosition(i));
             }
-
             lineRenderer.SetPositions(points.ToArray());
+
+            // Move boss
             bossTrans.position = lineRenderer.GetPosition(0);
             lineRenderer.positionCount -= 1;
         }
-
-        rb.gravityScale = gravity;
+        rb.isKinematic = false;
+        //rb.gravityScale = gravity;
 
         yield return new WaitForSeconds(3);
         Done();
     }
 
-    private void Done()
+    protected override void Done()
     {
+        base.Done();
         start = true;
         tracking = true;
         attack = false;

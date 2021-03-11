@@ -21,8 +21,8 @@ TagManager:
   - PlayerProjectile
   - Terrain
   - EnemyVision
-  - 
-  - 
+  - EnemyProjectile
+  - CollisionDamage
   - 
   - 
   - 

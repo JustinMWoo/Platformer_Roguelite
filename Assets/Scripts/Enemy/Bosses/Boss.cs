@@ -9,6 +9,7 @@ public class Boss : Enemy
 
     protected Transform player;
     protected bool fightStarted;
+    protected int currentMoveIndex;
 
     public Transform Player
     {
@@ -19,5 +20,23 @@ public class Boss : Enemy
     public void StartFight()
     {
         fightStarted = true;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        NextAttack();
+        fightStarted = false;
+    }
+    void Update()
+    {
+        if (fightStarted)
+        {
+            bossAttacks[currentMoveIndex].Execute();
+        }
+    }
+    public void NextAttack()
+    {
+        currentMoveIndex = Random.Range(0, bossAttacks.Count);
     }
 }

@@ -42,7 +42,8 @@ public class ProjectileEnemyAttack : EnemyAttack
             proj.SetSpeed(projSpeed);
             proj.playerProjectile = false;
             proj.direction = (target.transform.position - projObj.transform.position).normalized;
-            aiming = false;
+            
         }
+        aiming = false;
     }
 }

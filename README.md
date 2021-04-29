@@ -15,12 +15,10 @@ Interactables can be used by pressing z when nearby and the prompt is shown.
 
 ### Enemies  
 **General**  
-Enemies will patrol to the ends of the platform it is currently on until the player enters it's line of sight. Upon sighting the player the unit will attempt to attack 
-the player with the behavior different between enemy types. The currently implemented enemy types are below.  
+Enemies will patrol to the ends of the platform it is currently on until the player enters it's line of sight. Upon sighting the player the unit will attempt to attack the player with the behavior different between enemy types. The currently implemented enemy types are below.  
 
 **Melee**  
-When a player enters the vision of a melee enemy, the enemy will lock onto the player and chase them down (done through the use of the A* Pathfinding Project). Melee enemies 
-will deal damage upon colliding with the player.
+When a player enters the vision of a melee enemy, the enemy will lock onto the player and chase them down (done through the use of the A* Pathfinding Project). Melee enemies will deal damage upon colliding with the player.
 
 <img src="Readme/enemies_melee.gif" width = "600">  
 
@@ -30,18 +28,25 @@ When a player enters the vision of a ranged enemy, the enemy will attempt to get
 <img src="Readme/enemies_ranged.gif" width = "600">  
 
 **Boss**  
-Upon entering the boss arena the player will be locked in and combat will start with the boss. The currently implemented boss attacks tracking the player and drawing a 
-bouncing path for a few seconds. The path is then locked in and the boss will begin teleporting to the ends of each line making up the path and dealing damage to the player if 
-they are in said path.
+Upon entering the boss arena the player will be locked in and combat will start with the boss. The currently implemented boss attacks tracking the player and drawing a bouncing path for a few seconds. The path is then locked in and the boss will begin teleporting to the ends of each line making up the path and dealing damage to the player if they are in said path.
 
 <img src="Readme/enemies_boss.gif" width = "600">  
-
-### Combat
 
 ## Abilities and Mutations
 
 ### Ability Mutations
+Defeated enemies have a chance to drop abilities on death which can then be equipped by the player. Abilities come in different tiers with higher tiers having a lower chance of being dropped changing depending on the level of the slain enemy. Abilities have mutations that provide modifiers to the other equipped abilities. The player can pick and choose abilities the best benefit their other equipped abilities (Note: currently only some abilities have implemented mutations).  
+
+<img src="Readme/ability_mutations_1.gif" width = "600">  
+
+<img src="Readme/ability_mutations_2.gif" width = "600">  
 
 ### General Mutations
+General mutations can be picked up from certain locations on the map. When interacting with these spots, the game will pause and provide a choice of 3 choices in mutation that the player can select. These mutations provide permenant enhancements to the player's character.  
+
+<img src="Readme/general_mutations.gif" width = "600">  
 
 ### Major Mutations
+Upon defeating the boss and interacting with the exit of the level, the player will be brought to a menu where they can purchase more significant mutations for their character using experience gained from defeating enemies.  
+
+<img src="Readme/major_mutations.gif" width = "600">  

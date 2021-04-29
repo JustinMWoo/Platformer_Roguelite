@@ -35,6 +35,11 @@ public class AbilityController : MonoBehaviour
             _current = this;
         }
     }
+    private void Start()
+    {
+        player = PlayerStats.Current.gameObject;
+        playerStats = PlayerStats.Current;
+    }
 
     void Update()
     {

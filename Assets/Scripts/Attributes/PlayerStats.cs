@@ -14,11 +14,20 @@ public class PlayerStats : MonoBehaviour
     //[HideInInspector]
     public int exp;
 
-   
+    private static PlayerStats _current;
+    public static PlayerStats Current { get { return _current; } }
 
     // TODO: Weird place to put this, probably make a player manager class that controls the loading of the player between scenes
     private void Awake()
     {
+        if (_current != null && _current != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _current = this;
+        }
         DontDestroyOnLoad(gameObject);
     }
 

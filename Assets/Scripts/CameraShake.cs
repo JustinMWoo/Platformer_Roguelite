@@ -29,6 +29,7 @@ public class CameraShake : MonoBehaviour
     {
         cinemachineCamera = GetComponent<CinemachineVirtualCamera>();
         perlin = cinemachineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cinemachineCamera.Follow = PlayerStats.Current.gameObject.transform;
     }
 
     public void ShakeCamera(float intensity, float time)

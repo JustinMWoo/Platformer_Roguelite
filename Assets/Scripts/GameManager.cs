@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
             bossAlive = true;
             LoadLevel(scene);
             player.GetComponent<PlayerMovement>().enabled = true;
+            player.transform.position = new Vector3(0, 2.5f, 0);
+            
         }
     }
 
@@ -77,5 +79,11 @@ public class GameManager : MonoBehaviour
     private void LoadLevel(Scene scene)
     {
 
+    }
+
+    // Temp function to load first level
+    public void LoadFirstLevel()
+    {
+        SceneManager.LoadScene("Level1_1");
     }
 }

@@ -360,7 +360,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &30629345
 GameObject:
@@ -2089,7 +2089,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &421390198
 MonoBehaviour:
@@ -2582,6 +2582,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundedRangedEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8796631514399532492, guid: 2555a82e7d83f4142935f70fb36c5243,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8796631514399532495, guid: 2555a82e7d83f4142935f70fb36c5243,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2620,7 +2625,7 @@ PrefabInstance:
     - target: {fileID: 8796631514399532495, guid: 2555a82e7d83f4142935f70fb36c5243,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8796631514399532495, guid: 2555a82e7d83f4142935f70fb36c5243,
         type: 3}
@@ -7299,7 +7304,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1834643684
 MonoBehaviour:
@@ -7314,8 +7319,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBoss: 1
-  maxHealth: 500
+  maxHealth: 20
   level: 0
+  room: {fileID: 1107367035}
 --- !u!120 &1834643685
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -8319,7 +8325,7 @@ PrefabInstance:
     - target: {fileID: 7211407590705368113, guid: d0071ad4c53cea64296f1b94daaf4f5f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7211407590705368113, guid: d0071ad4c53cea64296f1b94daaf4f5f,
         type: 3}
@@ -8354,6 +8360,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MeleeEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8796631514399532492, guid: 79c5c20208ec3664a93ef000e5407daf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8796631514399532495, guid: 79c5c20208ec3664a93ef000e5407daf,
         type: 3}
@@ -8393,7 +8404,7 @@ PrefabInstance:
     - target: {fileID: 8796631514399532495, guid: 79c5c20208ec3664a93ef000e5407daf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8796631514399532495, guid: 79c5c20208ec3664a93ef000e5407daf,
         type: 3}

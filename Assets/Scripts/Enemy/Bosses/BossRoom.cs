@@ -23,4 +23,9 @@ public class BossRoom : MonoBehaviour
         boss.StartFight();
         roomDoor.SetActive(true); // TODO: change to moveing door? Or add an animation to the door that closes automatically
     }
+
+    public void EndBossFight()
+    {
+        roomDoor.SetActive(false);
+    }
 }

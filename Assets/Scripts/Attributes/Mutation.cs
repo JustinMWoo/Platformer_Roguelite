@@ -15,7 +15,7 @@ public class Mutation : ScriptableObject
     public bool generalMutation;
     [HideInInspector]
     public Sprite mutationSprite;
-    [HideInInspector]
+    //[HideInInspector]
     public string mutationDescription;
 }
 

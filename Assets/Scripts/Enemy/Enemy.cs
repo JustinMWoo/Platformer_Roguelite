@@ -39,10 +39,8 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-    protected void Die()
+    protected virtual void Die()
     {
-        if (isBoss)
-            GameManager.Current.bossAlive = false;
         RollForItem();
         Destroy(gameObject);
     }

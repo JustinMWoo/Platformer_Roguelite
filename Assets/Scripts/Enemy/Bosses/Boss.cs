@@ -11,6 +11,9 @@ public class Boss : Enemy
     protected bool fightStarted;
     protected int currentMoveIndex;
 
+    [SerializeField]
+    protected BossRoom room;
+
     public Transform Player
     {
         get { return player; }
@@ -38,5 +41,11 @@ public class Boss : Enemy
     public void NextAttack()
     {
         currentMoveIndex = Random.Range(0, bossAttacks.Count);
+    }
+    protected override void Die()
+    {
+        base.Die();
+        GameManager.Current.bossAlive = false;
+        room.EndBossFight();
     }
 }

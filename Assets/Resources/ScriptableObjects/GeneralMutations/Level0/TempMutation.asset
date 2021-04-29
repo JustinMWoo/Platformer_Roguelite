@@ -19,5 +19,6 @@ MonoBehaviour:
     type: 300
     order: 0
     source: {fileID: 0}
+  generalMutation: 0
   mutationSprite: {fileID: 21300000, guid: 200208cd0ce032948b40f2a7d312ae0f, type: 3}
-  mutationDescription: sdfasdfasdf
+  mutationDescription: Decrease cooldown

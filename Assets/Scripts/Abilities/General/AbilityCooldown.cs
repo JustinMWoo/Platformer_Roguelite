@@ -24,6 +24,7 @@ public class AbilityCooldown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = PlayerStats.Current.gameObject;
         if (initialize)
         {
             Initialize(Instantiate(ability), player);

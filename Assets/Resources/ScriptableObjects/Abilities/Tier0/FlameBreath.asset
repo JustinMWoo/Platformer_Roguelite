@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlameBreath
   m_EditorClassIdentifier: 
   aName: Flame Breath
-  aDescription: Breath fire.
+  aDescription: Breathe fire.
   aSprite: {fileID: 3841753352409701326, guid: 502b83975acb77241a5d811f21e27a18, type: 3}
   aBaseCooldown: 10
   mutations: {fileID: 0}

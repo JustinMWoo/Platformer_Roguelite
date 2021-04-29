@@ -72,4 +72,9 @@ public class ShopManager : MonoBehaviour
     {
         currentExp.text = "Experience: " + stats.exp;
     }
+
+    public void ExitShop()
+    {
+        GameManager.Current.LoadFirstLevel();
+    }
 }

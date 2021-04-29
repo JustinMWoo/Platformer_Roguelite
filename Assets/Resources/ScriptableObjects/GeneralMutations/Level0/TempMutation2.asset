@@ -19,5 +19,6 @@ MonoBehaviour:
     type: 300
     order: 0
     source: {fileID: 0}
+  generalMutation: 0
   mutationSprite: {fileID: 21300000, guid: 412786d382eba0445b4c83405069968a, type: 3}
-  mutationDescription: fffffffffff
+  mutationDescription: Increase projectile speed

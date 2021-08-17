@@ -28,7 +28,7 @@ When a player enters the vision of a ranged enemy, the enemy will attempt to get
 <img src="Readme/enemies_ranged.gif" width = "600">  
 
 **Boss**  
-Upon entering the boss arena the player will be locked in and combat will start with the boss. The currently implemented boss attacks tracking the player and drawing a bouncing path for a few seconds. The path is then locked in and the boss will begin teleporting to the ends of each line making up the path and dealing damage to the player if they are in said path.
+Upon entering the boss arena the player will be locked in and combat will start with the boss. The currently implemented boss attacks by tracking the player and drawing a bouncing path for a few seconds. The path is then locked in and the boss will begin teleporting to the ends of each line in order and dealing damage to the player if they are in said path.
 
 <img src="Readme/enemies_boss.gif" width = "600">  
 

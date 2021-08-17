@@ -35,7 +35,7 @@ Upon entering the boss arena the player will be locked in and combat will start 
 ## Abilities and Mutations
 
 ### Ability Mutations
-Defeated enemies have a chance to drop abilities on death which can then be equipped by the player. Abilities come in different tiers with higher tiers having a lower chance of being dropped changing depending on the level of the slain enemy. Abilities have mutations that provide modifiers to the other equipped abilities. The player can pick and choose abilities the best benefit their other equipped abilities (Note: currently only some abilities have implemented mutations).  
+Defeated enemies have a chance to drop abilities on death which can then be equipped by the player. Abilities come in different tiers with higher tiers having a lower chance of being dropped changing depending on the level of the slain enemy. Abilities have mutations that provide modifiers to the other equipped abilities. The player can pick and choose abilities that best benefit their other equipped abilities (Note: currently only some abilities have implemented mutations).  
 
 <img src="Readme/ability_mutations_1.gif" width = "600">  
 
